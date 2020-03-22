@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import { MuiThemeProvider } from "@material-ui/core";
+import { createMuiTheme } from '@material-ui/core/styles'
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import MainPage from './pages/MainPage';
+import Dashboard from './pages/Dashboard';
+import Tomatoes from './pages/Tomatoes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const config = {
+  themeName: "Test",
+  palette: {
+    primary: {
+      main: '#E53D35'
+    }
+  }
+};
+
+const theme = createMuiTheme(config)
+
+class App extends React.Component {
+  render () {
+    return (
+      <React.Fragment>
+        <MuiThemeProvider theme={theme}>
+          <MainPage>
+            <Switch>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/tomatoes" exact component={Tomatoes} />
+              <Redirect path="/" exact component={Dashboard}/>
+            </Switch>
+          </MainPage>
+        </MuiThemeProvider>
+      </React.Fragment>
+    );
+  }
 }
 
-export default App;
+export default withRouter((App));
