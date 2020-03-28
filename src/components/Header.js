@@ -3,13 +3,13 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Button
+    Button,
+    Grid
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 class Header extends React.Component {
   render () {
-    console.log(this.props)
     const { history } = this.props;
 
     return (
@@ -18,11 +18,20 @@ class Header extends React.Component {
           <Typography variant="h6">
             TIMETOES
           </Typography>
-
-          
-          <Button onClick={() => history.push('/') } color="inherit"> Dashboard</Button>
-          <Button onClick={() => history.push('/tomatoes') } color="inherit">Tomatoes</Button>
-          
+          <Grid 
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+            >
+            <Grid item>
+              <Button onClick={() => history.push('/') } color="inherit"> Dashboard</Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={() => history.push('/tomatoes') } color="inherit">Tomatoes</Button>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     )

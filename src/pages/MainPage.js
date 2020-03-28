@@ -9,8 +9,11 @@ class MainPage extends React.Component {
     return (
       <main>
         <Header />
-
-        {children}
+        <div style={{
+          padding: 20
+        }}>
+          {children}
+        </div>
       </main>
         
     )
